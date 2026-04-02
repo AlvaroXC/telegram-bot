@@ -65,7 +65,7 @@ public class AlertScheduler {
         );
 
         for (com.axsoluciones.facturaTelegramBot.entity.Service s : reminders) {
-            enviarMensaje("RECORDATORIO: Hoy debes facturar a " + s.getCustomer().getName());
+            enviarMensaje("RECORDATORIO: Hoy debes facturar a " + s.getCustomer().getName() + " por el servicio de " + s.getNameToBill());
         }
     }
 

@@ -57,8 +57,9 @@ public class FacturaBot extends AbilityBot {
                         silent.send(" No tienes facturas pendientes.", ctx.chatId());
                     } else {
                         StringBuilder sb = new StringBuilder(" Pendientes de Facturar: \n\n");
+                        sb.append("Para marcar como FACTURADO ejecuta el comando: /facturar [ID] \nEjemplo: /factura 1 \n\n");
                         for (Service s : pendientes) {
-                            sb.append(String.format("/facturar_%d\nCliente: %s\nServicio: %s\nMonto: $%.2f\n\n",
+                            sb.append(String.format("ID: %d\nCliente: %s\nServicio: %s\nMonto: $%.2f\n\n",
                                     s.getId(),
                                     s.getCustomer().getName(),
                                     s.getNameToBill(),
@@ -72,16 +73,16 @@ public class FacturaBot extends AbilityBot {
 
     public Ability marcarFacturado() {
         return Ability.builder()
-                .name("facturar") // El usuario escribe /facturar_5
+                .name("facturar")
                 .info("Marca un servicio como facturado")
                 .locality(USER)
                 .privacy(PUBLIC)
                 .action(ctx -> {
 
-                    String argumento = ctx.firstArg();
+                    String firstArg = ctx.firstArg();
 
                     try {
-                        Long serviceId = Long.parseLong(argumento);
+                        Long serviceId = Long.parseLong(firstArg);
                         billService.markAsBilled(serviceId);
                         silent.send(" ¡Servicio #" + serviceId + " marcado como FACTURADO!", ctx.chatId());
                     } catch (Exception e) {
