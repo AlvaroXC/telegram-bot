@@ -57,9 +57,9 @@ public class FacturaBot extends AbilityBot {
                         silent.send(" No tienes facturas pendientes.", ctx.chatId());
                     } else {
                         StringBuilder sb = new StringBuilder(" Pendientes de Facturar: \n\n");
-                        sb.append("Para marcar como FACTURADO ejecuta el comando: /facturar [ID] \nEjemplo: /factura 1 \n\n");
+                        sb.append("Para marcar como FACTURADO ejecuta el comando: /facturar [ID] \nEjemplo: /facturar 1 \n\n");
                         for (Service s : pendientes) {
-                            sb.append(String.format("ID: %d\nCliente: %s\nServicio: %s\nMonto: $%.2f\n\n",
+                            sb.append(String.format("ID: %d\nCliente: %s\nServicio: %s\nMonto: $%s\n\n",
                                     s.getId(),
                                     s.getCustomer().getName(),
                                     s.getNameToBill(),

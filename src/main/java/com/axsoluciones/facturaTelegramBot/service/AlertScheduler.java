@@ -57,15 +57,15 @@ public class AlertScheduler {
         }
     }
 
-    @Scheduled(cron = "0 0 9 * * *")
+    @Scheduled(cron = "0 35 11 * * *")
     public void checkInvoiceReminders() {
         LocalDate today = LocalDate.now();
-        List<com.axsoluciones.facturaTelegramBot.entity.Service> reminders = serviceRepository.findByBillStateAndInvoiceReminderDate(
+        List<com.axsoluciones.facturaTelegramBot.entity.Service> reminders = serviceRepository.findByBillStateAndInvoiceDeadlineGreaterThanEqual(
                 BillState.NO_FACTURADO, today
         );
 
         for (com.axsoluciones.facturaTelegramBot.entity.Service s : reminders) {
-            enviarMensaje("RECORDATORIO: Hoy debes facturar a " + s.getCustomer().getName() + " por el servicio de " + s.getNameToBill());
+            enviarMensaje("RECORDATORIO: Tienes pendiente facturar a " + s.getCustomer().getName() + " por el servicio de " + s.getNameToBill() + ". Fecha límite: " + s.getInvoiceDeadline());
         }
     }
 

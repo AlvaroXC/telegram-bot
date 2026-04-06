@@ -10,5 +10,5 @@ import java.util.List;
 public interface ServiceRepository extends JpaRepository<Service, Long> {
     List<Service> findByBillState(BillState billState);
 
-    List<Service> findByBillStateAndInvoiceReminderDate(BillState billState, LocalDate date);
+    List<Service> findByBillStateAndInvoiceDeadlineGreaterThanEqual(BillState billState, LocalDate date);
 }

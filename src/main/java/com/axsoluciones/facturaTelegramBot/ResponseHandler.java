@@ -68,7 +68,7 @@ public class ResponseHandler  {
             sendMessage(chatId, "¿Cuándo vence la licencia? (YYYY-MM-DD):");
             chatStates.put(chatId, UserState.AWAITING_EXPIRATION);
         } else {
-            sendMessage(chatId, "¿Qué fecha quieres recordar la facturación? (YYYY-MM-DD):");
+            sendMessage(chatId, "Ingresa la fecha límite de facturación (YYYY-MM-DD):");
             chatStates.put(chatId, UserState.AWAITING_INVOICE_DATE);
         }
     }
@@ -83,7 +83,7 @@ public class ResponseHandler  {
 
         userData.put(chatId + "DATE", dateText);
 
-        sendMessage(chatId, "¿Qué fecha quieres recordar la facturación? (YYYY-MM-DD):");
+        sendMessage(chatId, "Ingresa la fecha límite de facturación (YYYY-MM-DD):");
         chatStates.put(chatId, UserState.AWAITING_INVOICE_DATE);
     }
 
@@ -183,8 +183,11 @@ public class ResponseHandler  {
         List<InlineKeyboardButton> row = new ArrayList<>();
         InlineKeyboardButton btn = new InlineKeyboardButton();
         btn.setText("Abrir WhatsApp");
+
         String text = "Hola! Gracias por contratar " + data.get("TYPE");
-        btn.setUrl("https://wa.me/" + data.get("PHONE") + "?text=" + URLEncoder.encode(text, StandardCharsets.UTF_8));
+        String phoneNumber = "52" + data.get("PHONE").replaceAll("\\s+", "");
+        String url = "https://wa.me/" + phoneNumber + "?text=" + URLEncoder.encode(text, StandardCharsets.UTF_8);
+        btn.setUrl(url);
 
         row.add(btn);
         rows.add(row);

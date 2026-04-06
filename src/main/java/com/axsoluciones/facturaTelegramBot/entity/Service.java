@@ -14,10 +14,10 @@ public abstract class Service {
     private Long id;
 
 
-    private Double price;
+    private String price;
     private LocalDate hiringDate;
 
-    private LocalDate invoiceReminderDate;
+    private LocalDate invoiceDeadline;
 
     @Enumerated(EnumType.STRING)
     private BillState billState;
@@ -37,11 +37,11 @@ public abstract class Service {
         this.id = id;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -53,12 +53,12 @@ public abstract class Service {
         this.hiringDate = hiringDate;
     }
 
-    public LocalDate getInvoiceReminderDate() {
-        return invoiceReminderDate;
+    public LocalDate getInvoiceDeadline() {
+        return invoiceDeadline;
     }
 
-    public void setInvoiceReminderDate(LocalDate invoiceReminderDate) {
-        this.invoiceReminderDate = invoiceReminderDate;
+    public void setInvoiceDeadline(LocalDate invoiceDeadline) {
+        this.invoiceDeadline = invoiceDeadline;
     }
 
     public BillState getBillState() {

@@ -35,7 +35,7 @@ public class BillService {
         String type = data.get("TYPE");
         String phone = data.get("PHONE");
         String name = data.get("NAME");
-        Double price = Double.parseDouble(data.get("PRICE"));
+        String price = data.get("PRICE");
         String detail = data.get("DETAIL");
 
         Customer customer = customerRepository.findByPhoneNumber(phone)
@@ -73,7 +73,7 @@ public class BillService {
         service.setHiringDate(LocalDate.now());
         service.setBillState(BillState.NO_FACTURADO);
         String invoiceDateStr = data.get("INVOICE_DATE");
-        service.setInvoiceReminderDate(LocalDate.parse(invoiceDateStr));
+        service.setInvoiceDeadline(LocalDate.parse(invoiceDateStr));
 
         serviceRepository.save(service);
     }

@@ -95,7 +95,7 @@ class BillServiceTest {
         assertEquals(LocalDate.parse("2027-12-31"), sw.getExpiredDate());
         assertEquals(1500.00, sw.getPrice());
         assertEquals(BillState.NO_FACTURADO, sw.getBillState());
-        assertEquals(LocalDate.parse("2026-05-15"), sw.getInvoiceReminderDate());
+        assertEquals(LocalDate.parse("2026-05-15"), sw.getInvoiceDeadline());
     }
 
     @Test

@@ -83,9 +83,9 @@ class AlertSchedulerTest {
         Service ms = new com.axsoluciones.facturaTelegramBot.entity.MaintenanceService();
         ms.setCustomer(customer);
         ms.setBillState(BillState.NO_FACTURADO);
-        ms.setInvoiceReminderDate(LocalDate.now());
+        ms.setInvoiceDeadline(LocalDate.now());
 
-        when(serviceRepository.findByBillStateAndInvoiceReminderDate(eq(BillState.NO_FACTURADO), any(LocalDate.class)))
+        when(serviceRepository.findByBillStateAndInvoiceDeadlineGreaterThanEqual(eq(BillState.NO_FACTURADO), any(LocalDate.class)))
                 .thenReturn(Collections.singletonList(ms));
 
         alertScheduler.checkInvoiceReminders();
